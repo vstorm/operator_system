@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Server Status - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}Server Status{% endblock %}
+
+{% block main_content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <!--<div class="panel-heading">Run Command</div>-->
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Server</th>
+                            <th>Ping Status</th>
+                            <th>Up Since</th>
+                            <th>Last Check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for server in servers %}
+                        <tr>
+                            <td>
+                                {% if server.status.status %}
+                                <span class="label label-success">Up</span>
+                                {% else %}
+                                <span class="label label-danger">Down</span>
+                                {% endif %}
+                            </td>
+                            <td>{{server.ip}}</td>
+                            <td>{{server.status.ping_status}}</td>
+                            <td>{{server.status.up_since}}</td>
+                            <td>{{server.status.last_check}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

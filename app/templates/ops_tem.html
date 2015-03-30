@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Ops Log Tem - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}Operation Log Tem{% endblock %}
+
+{% block main_content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <!--<div class="panel-heading">Run Command</div>-->
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Hostname</th>
+                            <th>Ip</th>
+                            <th>Event Type</th>
+                            <th>Event Log</th>
+                            <th>Result</th>
+                            <th>Track Mark</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ops_log_tem in ops_logs_tem %}
+                        <tr>
+                            <td>{{ops_log_tem.user}}</td>
+                            <td>{{ops_log_tem.server.hostname}}</td>
+                            <td>{{ops_log_tem.server.ip}}</td>
+                            <td>{{ops_log_tem.event_type}}</td>
+                            <td>{{ops_log_tem.event_log}}</td>
+
+                            <td>
+                                {% if ops_log_tem.result %}
+                                <span class="label label-success">Success</span>
+                                {% else %}
+                                <span class="label label-danger">Fail</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ops_log_tem.track_mark}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

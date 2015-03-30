@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Ops Log - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}Operation Log{% endblock %}
+
+{% block main_content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <!--<div class="panel-heading">Run Command</div>-->
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Remote User</th>
+                            <th>Cmd</th>
+                            <th>Log Type</th>
+                            <th>Total Num</th>
+                            <th>Success Num</th>
+                            <th>Fail Num</th>
+                            <th>Start Time</th>
+                            <th>Finish Time</th>
+                            <th>Track Mark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ops_log in ops_logs %}
+                        <tr>
+                            <td>{{ops_log.user}}</td>
+                            <td>{{ops_log.remote_user}}</td>
+                            <td>{{ops_log.cmd}}</td>
+                            <td>{{ops_log.log_type}}</td>
+                            <td>{{ops_log.total_num}}</td>
+                            <td>{{ops_log.success_num}}</td>
+                            <td>{{ops_log.fail_num}}</td>
+                            <td>{{ops_log.start_time}}</td>
+                            <td>{{ops_log.finish_time}}</td>
+                            <td>{{ops_log.track_mark}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

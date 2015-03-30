@@ -1,0 +1,44 @@
+body {
+    position: relative;
+    padding-top: 50px;
+    box-shadow: 0 0 0 0;
+}
+
+.dropdown-menu{
+    box-shadow: 0 0 0 0;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    padding: 1em 0;
+}
+
+.navbar-color{
+    background: none repeat scroll 0 0 #2C3E50;
+}
+
+.navbar-color .navbar-brand {
+    color: #F7F7F7;
+}
+
+/*.navbar-nav.navbar-right:last-child {*/
+    /*margin-right: 20px;*/
+/*}*/
+
+
+/* Relevant to the plugin. */
+.execute-result{
+    padding-left: 0;
+    padding-top: 0;
+}
+
+.execute-result a{
+    color: #333333;
+}
+
+.execute-result .tab-pane{
+    padding-left: 18px;
+    padding-top: 10px;
+}
+

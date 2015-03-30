@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}DashBoard{% endblock %}
+{% block header_subtitle%}statistics and more{% endblock %}
+{% block server_date %}
+<div class="col-sm-3 server_data" style="padding-top: 24px;">
+    <select class="form-control" name="server">
+        {% for server in servers %}
+        <option value="{{server.ip}}">{{server.ip}}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="col-sm-3 server_data" style="padding-top: 24px;">
+    <select class="form-control" name="interval">
+        <option value="hour">5 minutes</option>
+        <option value="day">1 day</option>
+        <option value="week">1 week</option>
+    </select>
+</div>
+<div class="col-sm-1 server_data" style="padding-top: 24px;">
+    <button class="btn btn-primary change">Change</button>
+</div>
+{% endblock %}
+{% block main_content%}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title pull-left">System Load</h4>
+            </div>
+            <div class="panel-body">
+                <div id="system-load"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Cpu Use Percentage</div>
+            <div class="panel-body">
+                <div id="cpu"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Memory Use Percentage</div>
+            <div class="panel-body">
+                <div id="memory"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='js/highcharts.js')}}"></script>
+<script src="{{url_for('static', filename='js/index.js')}}"></script>
+{% endblock %}
+

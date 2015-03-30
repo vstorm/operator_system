@@ -1,0 +1,56 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Login - Operation And Maintenance System{% endblock %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('static', filename='css/login.css')}}">
+{% endblock %}
+
+{% block content %}
+<!--login modal-->
+<!--login modal-->
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center">Login</h1>
+            </div>
+            <div class="modal-body">
+                <div class="text-center text-danger">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="list-unstyled">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <form class="form col-md-12 center-block" action="" name="login" method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_field(form.username) }}
+                    {{ wtf.form_field(form.password) }}
+                    <div class="form-group">
+                        <label>
+                            {{form.remember_me}} Remember Me
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+                        <!--<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>-->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!--<div class="col-md-1accordion2">-->
+                <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

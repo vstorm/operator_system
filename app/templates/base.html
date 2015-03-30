@@ -1,0 +1,96 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/jsfiddle.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+{% endblock %}
+
+
+{% block navbar %}
+<header class="navbar navbar-inverse navbar-fixed-top navbar-color" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!--<div class="container">-->
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Operation And Maintenance System</a>
+        </div>
+
+
+        <!--Collect the nav links, forms, and other content for toggling-->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="cmd">CmdExe</a>
+                </li>
+                <li>
+                    <a href="file">FileTrans</a>
+                </li>
+                <li>
+                    <a href="ops_log">OpsLog</a>
+                </li>
+                <li>
+                    <a href="ops_log_tem">OpsLogTem</a>
+                </li>
+                <li>
+                    <a href="server_status">Status</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.username }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/password">Change Password</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</header>
+
+{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <!--<div id="sidr">-->
+    <!--&lt;!&ndash; Your content &ndash;&gt;-->
+    <!--<ul>-->
+    <!--<li><img width="60" src="{{url_for('static', filename='images/slide.svg')}}"></li>-->
+    <!--<li><a href="#">List 1</a></li>-->
+    <!--<li class="active"><a href="#">List 2</a></li>-->
+    <!--<li><a href="#">List 3</a></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h2>
+                    {% block header_title%}{% endblock %}
+                    <small> {% block header_subtitle%}{% endblock %}</small>
+                </h2>
+            </div>
+             {% block server_date %}
+                {% endblock %}
+        </div>
+        {% block main_content%}{% endblock %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='js/underscore-min.js')}}"></script>
+<script src="{{url_for('static', filename='js/jsfiddle.js')}}"></script>
+<script src="{{url_for('static', filename='js/base.js')}}"></script>
+{% endblock %}

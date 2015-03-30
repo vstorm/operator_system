@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Command Execution - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}Command Execution{% endblock %}
+
+
+{% block main_content%}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Run Command</div>
+            <div class="panel-body">
+                {% include 'server_list.html' %}
+                <div class="row">
+                    <div class="col-sm-9">
+                        <label>Enter your command:</label>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="command">
+
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Run
+                                    <span class="caret"></span></button>
+                                {% if remote_users %}
+                                <ul class="dropdown-menu pull-right execute-btn">
+
+                                    {% for remote_user in remote_users %}
+                                    <li class="{{remote_user.id}}">
+                                        <a>{{remote_user.remote_username}}</a>
+                                    </li>
+                                    {% endfor %}
+
+                                </ul>
+                                {% endif %}
+                            </div>
+                            <!-- /btn-group -->
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'result.html' %}
+
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='js/cmd.js')}}"></script>
+{% endblock %}

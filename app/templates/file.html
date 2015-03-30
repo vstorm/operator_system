@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}File Transmission - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}File Transmission{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap-duallistbox.css')}}">
+{% endblock %}
+
+
+{% block main_content%}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Run Command</div>
+            <div class="panel-body">
+                {% include 'server_list.html' %}
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Choose Action:</label>
+
+                        <div class="col-sm-5">
+                            <select class="form-control" name="trans-type">
+                                <option value="getfile">GetFile</option>
+                                <option value="sendfile">SendFile</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
+                                    Run <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu execute-btn" role="menu">
+                                    {% for remote_user in remote_users %}
+                                    <li class="{{remote_user.id}}">
+                                        <a>{{remote_user.remote_username}}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Remote Path:</label>
+
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" name="remote_path">
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-7">
+                        <select class="file-select" name="myselect" multiple>
+                            {% for file_info in files_info %}
+                            <option value="{{file_info.0}}">{{file_info.0}} - {{file_info.1 | filesizeformat(binary=False)}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'result.html' %}
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='js/jquery.bootstrap-duallistbox.js')}}"></script>
+<script src="{{url_for('static', filename='js/file.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Edit Profile - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}Edit Profile{% endblock %}
+
+
+{% block main_content%}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="col-sm-6 form-horizontal" method="POST">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <ul class="list-unstyled">
+                                {% for message in messages %}
+                                <li class="text-danger">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_field(form.username) }}
+                    {{ wtf.form_field(form.email) }}
+                    {{ wtf.form_field(form.alarm_email) }}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - Operation And Maintenance System{% endblock %}
+
+{% block header_title %}Profile{% endblock %}
+
+
+{% block main_content%}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal col-sm-8">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Username:</label>
+
+                        <div class="col-sm-5">
+                            <p class="form-control-static">{{g.user.username}}</p>
+                        </div>
+                    </div>
+
+                    {% if g.user.email %}
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Email:</label>
+
+                        <div class="col-sm-5">
+                            <p class="form-control-static">{{g.user.email}}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Alarm Email:</label>
+
+                        {% if g.user.alarm_email %}
+                        <div class="col-sm-5">
+                            <p class="form-control-static">
+                                {{g.user.alarm_email}}
+                            </p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Last Login Time</label>
+
+                        <div class="col-sm-5">
+                            <p class="form-control-static">{{g.user.last_login_time}}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Register Time</label>
+
+                        <div class="col-sm-5">
+                            <p class="form-control-static">{{g.user.register_time}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <a class="btn btn-primary pull-right" href="/edit_profile">Edit</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

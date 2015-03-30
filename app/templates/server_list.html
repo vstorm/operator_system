@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-sm-9">
+
+        <div id="content" class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title pull-left">Server List</h4>
+
+                <div class="btn-group pull-right">
+                    <button class="btn btn-success btn-sm">Check All</button>
+                    <button class="btn btn-danger btn-sm">Un-Check All</button>
+                    <button class="btn btn-info btn-sm">Expand All</button>
+                    <button class="btn btn-warning btn-sm">Collapse All</button>
+
+                </div>
+            </div>
+            <div class="panel-body server-list">
+                <div class="listTree">
+
+                    <ul>
+                        {% for server_group in server_groups %}
+                        <li>
+                                        <span>
+                                            <input type="checkbox" value="{{server_group.id}}">
+                                            {{server_group.group_name}}
+                                            <i class="glyphicon glyphicon-chevron-up"></i>
+                                        </span>
+                            <ul style="display: none;">
+                                {% for server in server_group.servers %}
+                                <li>
+                                                    <span>
+                                                    <input name="server" type="checkbox" value="{{server.id}}">
+                                                    {{server.ip}}
+                                                    </span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                        <li>
+                                            <span>
+                                            <input type="checkbox" value="others">
+                                            Others
+                                            <i class="glyphicon glyphicon-chevron-up"></i>
+                                        </span>
+                            <ul style="display: none;">
+                                {% for server in servers %}
+                                <li>
+                                                    <span>
+                                                    <input name="server" type="checkbox" value="{{server.id}}">
+                                                    {{server.ip}}
+                                                    </span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+
+            <!--<br /><br />-->
+
+            <!--<h4>Selection JSON:</h4>-->
+            <!--<pre id="selectionJson"></pre>-->
+            <!--<button class="btn btn-primary">Get JSON for selected nodes</button>-->
+        </div>
+    </div>
+</div>
